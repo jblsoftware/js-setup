@@ -1,0 +1,30 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "webpack": "webpack",
+    "webpack-dev-server": "webpack-dev-server",
+    "debug": "node --inspect --inspect-brk ./node_modules/webpack/bin/webpack.js",
+    "prod": "npm run webpack -- --env.mode production",
+    "dev": "npm run webpack-dev-server -- --env.mode development --watch --hot",
+    "prod:debug": "npm run debug -- --env.mode production",
+    "dev:debug": "npm run debug -- --env.mode development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^6.5.5"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^4.3.0",
+    "ts-loader": "^7.0.3",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "main": "plain.js",
+  "description": ""
+}
