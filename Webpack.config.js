@@ -1,15 +1,23 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackBuild = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = ({ mode, presets } = { mode: "development", presets: [] }) => {
   return {
     mode,
-    entry: './src/index.ts',
-    devtool: 'inline-source-map',
+    entry: {
+      app: "./src/index.ts",
+    },
+    devtool: "inline-source-map",
+    devServer: {
+      contentBase: "./dist",
+      hot: true,
+      host: "localhost",
+    },
     output: {
-      filename: "bundle.js",
       path: path.resolve(__dirname, "dist"),
+      filename: "[name].bundle.js",
     },
     module: {
       rules: [
@@ -20,6 +28,12 @@ module.exports = ({ mode, presets } = { mode: "development", presets: [] }) => {
         },
       ],
     },
-    plugins: [new HtmlWebpackBuild(), new webpack.ProgressPlugin()],
+    plugins: [
+      new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+      new HtmlWebpackBuild({
+        title: "Development",
+      }),
+      new webpack.ProgressPlugin(),
+    ],
   };
 };
